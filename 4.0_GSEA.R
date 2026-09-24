@@ -152,25 +152,6 @@ run_insko_gsea <- function(name, weights, min_size, max_size,
               row.names = FALSE)
   }
 
-  metadata <- c(
-    paste("contrast:", name),
-    paste("coefficient_weights:", paste(names(weights), weights, sep = "=", collapse = ";")),
-    paste("sample_filter:", if (is.null(sample_filter)) "none" else sample_filter),
-    paste("ranked_genes:", nrow(ranked)),
-    "rank_metric: DESeq2 Wald statistic, descending; gene_id breaks ties",
-    paste("MSigDB_version:", versions),
-    paste("msigdbr_version:", as.character(packageVersion("msigdbr"))),
-    paste("fgsea_version:", as.character(packageVersion("fgsea"))),
-    paste("DESeq2_version:", as.character(packageVersion("DESeq2"))),
-    paste("minSize:", min_size), paste("maxSize:", max_size),
-    "nPermSimple: 10000", "eps: 0", "seed_per_collection: 1",
-    "FDR: BH within each contrast and collection; significant if padj < 0.05",
-    paste("dds_md5:", unname(tools::md5sum(gsea_dds_path))),
-    paste("rank_md5:", unname(tools::md5sum(rank_path))),
-    paste("gene_set_summary_md5:", unname(tools::md5sum(summary_path))),
-    "", capture.output(sessionInfo())
-  )
-  writeLines(metadata, file.path(out_dir, "run_metadata.txt"))
   cat(sprintf("%s: %d ranked genes, %d significant pathways\n",
               name, nrow(ranked), nrow(significant)))
   invisible(combined)

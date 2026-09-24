@@ -16,23 +16,3 @@ require_packages <- function(pkgs, context = "this script") {
   }
   invisible(TRUE)
 }
-
-# Write a per-run provenance record (sessionInfo + loaded/installed versions).
-dump_session_info <- function(outdir, tag = NULL) {
-  dir.create(outdir, showWarnings = FALSE, recursive = TRUE)
-  fn <- file.path(
-    outdir,
-    if (is.null(tag)) "sessionInfo.txt" else sprintf("sessionInfo_%s.txt", tag)
-  )
-  con <- file(fn, "w")
-  on.exit(close(con))
-  writeLines(c(
-    "# INSKO run provenance",
-    paste("# generated:", format(Sys.time(), tz = "UTC", usetz = TRUE)),
-    paste("# working_dir:", getwd()),
-    paste("# libPaths:", paste(.libPaths(), collapse = " ; ")),
-    ""
-  ), con)
-  writeLines(capture.output(sessionInfo()), con)
-  invisible(fn)
-}
