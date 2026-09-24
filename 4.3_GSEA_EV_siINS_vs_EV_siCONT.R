@@ -1,7 +1,7 @@
 #!/usr/bin/env Rscript
 
 # EV siINS vs EV siCONT
-source("4.GSEA.R")
+source("4.0_GSEA.R")
 run_insko_gsea(
   name = "EV_siINS_vs_EV_siCONT",
   weights = c(si_siINS_vs_siCONT = 1),
