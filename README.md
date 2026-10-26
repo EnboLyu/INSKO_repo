@@ -29,7 +29,7 @@ Run scripts from the repository root.
 
 | Folder | Contents |
 | --- | --- |
-| [results/deseq2/](results/deseq2/dds.rds) | Model|
+| [results/deseq2/](results/deseq2/dds.rds) | Saved DESeq2 dataset. |
 | [results/deseq2/2_shrunken/](results/deseq2/2_shrunken/) | Full and significant gene tables, and clustering input. |
 | [results/ora/](results/ora/) | Enrichment results, background genes. |
 | [results/gsea/](results/gsea/) | GSEA results, one folder per comparison. |
